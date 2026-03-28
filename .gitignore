@@ -5,7 +5,8 @@
 
 #development project files
 start.sh
-routes.txt
+notes.txt
+README_OLD.md
 
 # dependencies
 /node_modules
