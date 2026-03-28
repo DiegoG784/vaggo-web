@@ -3,6 +3,7 @@
 // import Image from "next/image";
 
 import Header from "@/component/header"
+import Link from "next/link"
 
 export default function Page() {
     return (
@@ -11,6 +12,7 @@ export default function Page() {
             <Header/>
 
             <h1>Olá [Usuário]!</h1>
+            <Link href={"/user/vehicle/register"}>Registrar Veículo</Link>
 
             <section className="mb-3">
                 <h1>Mensagens</h1>
