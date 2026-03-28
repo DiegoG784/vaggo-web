@@ -5,25 +5,27 @@
   --foreground: #171717;
 }
 
-/* @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-} */
-
-/* @media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-} */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
 body {
-  background: var(--background);
+  /* Gradiente vertical: branco → azul claro */
+  background: linear-gradient(to bottom, #ffffff 0%, #87bafc 100%);
+  /* Alternativa com cor mais suave: linear-gradient(to bottom, #ffffff 0%, #e0f2fe 100%); */
+  
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
   
   width: 100%;
-  height: 100%;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+}
+
+.input {
+  @apply px-4 py-3 rounded-lg border border-gray-300 bg-white/70 
+         focus:outline-none focus:ring-2 focus:ring-blue-400 transition;
 }
