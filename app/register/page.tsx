@@ -85,87 +85,49 @@ export default function Page() {
 
   }
 
-return (
-  <main className="flex flex-col min-h-screen">
-    <Header />
 
-    <div className="flex flex-1 items-center justify-center bg-[var(--background-soft)] px-4">
+  return (
+    <main className="flex flex-col">
+        
+        <div className="flex flex-col items-center justify-center h-screen w-screen"> {/* change h/w-screen between 'full' or '100'. screens get messy */}
+            <section className="flex flex-col items-center bg-gray-300 w-1/3 h-2/4">
 
-      <section className="
-        w-full max-w-md        /* mais largo */
-        min-h-[520px]          /* menos alto */
-        bg-white/80 backdrop-blur-xl
-        border border-white/30
-        rounded-2xl
-        shadow-2xl
-        px-10 py-8             /* mais equilibrado */
-        flex flex-col justify-between
-      ">
+                <h1>Vaggo</h1>
+                <h1>Seja bem vindo!</h1>
 
-        {/* Header */}
-        <div className="text-center">
-          <h1 className="
-            text-4xl font-bold
-            bg-gradient-to-r from-blue-600 to-blue-400
-            bg-clip-text text-transparent
-          ">
-            Vaggo
-          </h1>
-          <p className="text-gray-500 text-base mt-2">
-            Crie sua conta
-          </p>
+                <form className="flex flex-col" onSubmit={handleRegister}>
+
+
+                  <input type="text" name="name" placeholder="Nome Completo"/>
+                  <input type="text" name="cpf" placeholder="CPF"/>
+
+                  <div className="flex flex-row">
+                    <label htmlFor="gender" className="mr-1">Sexo:</label>
+                    <select name="gender">
+                      <option  value={"M"}>Masculino</option>
+                      <option  value={"F"}>Feminino</option>
+                    </select>
+                  </div>
+
+                  <div className="flex flex-row">
+                    <label htmlFor="birthDate" className="mr-1">Data de Nascimento:</label>
+                    <input type="date" name="birthDate"/>
+                  </div>
+
+                  <input type="text" name="email" placeholder="e-mail"/>
+                  <input type="text" name="phone" placeholder="(XX) XXXXX-XXXX"/>
+
+                  <input type="password" name="password" placeholder="Senha"/>
+
+                  <input type="password" name="passConfirm" placeholder="Digite sua senha novamente"/>
+
+                  <input type="submit" value={"Registrar"}/>
+
+                </form>
+
+            </section>
         </div>
 
-        {/* Form */}
-        <form className="flex flex-col gap-4 mt-6" onSubmit={handleRegister}>
-
-          <input type="text" name="name" placeholder="Nome completo" className="input" />
-          <input type="text" name="cpf" placeholder="CPF" className="input" />
-
-          <div className="flex flex-col gap-1">
-            <label className="text-sm text-gray-700">Sexo</label>
-            <select name="gender" className="input">
-              <option value="M">Masculino</option>
-              <option value="F">Feminino</option>
-            </select>
-          </div>
-
-          <div className="flex flex-col gap-1">
-            <label className="text-sm text-gray-700">Data de nascimento</label>
-            <input type="date" name="birthDate" className="input" />
-          </div>
-
-          <input type="email" name="email" placeholder="E-mail" className="input" />
-          <input type="text" name="phone" placeholder="(XX) XXXXX-XXXX" className="input" />
-
-          <input type="password" name="password" placeholder="Senha" className="input" />
-          <input type="password" name="passConfirm" placeholder="Confirmar senha" className="input" />
-
-          <button
-            type="submit"
-            className="
-              mt-4
-              px-10 py-3
-              self-center
-              rounded-lg
-              font-semibold
-              text-white
-              bg-gradient-to-r from-blue-600 to-blue-500
-              hover:from-blue-700 hover:to-blue-600
-              shadow-md
-              hover:scale-105
-              active:scale-95
-              transition-all
-            "
-          >
-            Registrar
-          </button>
-
-        </form>
-
-      </section>
-
-    </div>
-  </main>
-);
+    </main>
+  );
 }
