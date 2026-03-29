@@ -5,11 +5,11 @@
   --foreground: #171717;
 }
 
-* {
+/* html {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-}
+} */
 
 body {
   /* Gradiente vertical: branco → azul claro */
@@ -19,13 +19,13 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
   
-  width: 100%;
+  /* width: 100%; */
   min-height: 100vh;
-  margin: 0;
-  padding: 0;
+  /* margin: 0; */
+  /* padding: 0; */
 }
 
-.input {
+/* .input {
   @apply px-4 py-3 rounded-lg border border-gray-300 bg-white/70 
          focus:outline-none focus:ring-2 focus:ring-blue-400 transition;
-}
+} */

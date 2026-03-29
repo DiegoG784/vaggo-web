@@ -4,8 +4,6 @@
 
 import Header from "@/component/header"
 import Link from "next/link"
-<<<<<<< HEAD
-=======
 import { useEffect, useState } from "react"
 
 function VehicleCard(raw_data:any) {
@@ -24,7 +22,6 @@ function VehicleCard(raw_data:any) {
         </section>
     )
 }
->>>>>>> 81f52eace40674f31af9e6a5be14941800d6c011
 
 export default function Page() {
     const [carData, setCarData] = useState(null)
@@ -67,14 +64,10 @@ export default function Page() {
 
             <Header/>
 
-<<<<<<< HEAD
-            <h1>Olá [Usuário]!</h1>
-=======
             <h1>Olá {userData.person.name}!</h1>
->>>>>>> 81f52eace40674f31af9e6a5be14941800d6c011
             <Link href={"/user/vehicle/register"}>Registrar Veículo</Link>
 
-            <section className="mb-3">
+            <section className="mb-1">
                 <h1>Mensagens</h1>
                 <div>
                     [Insira uma lista de últimos contatos]
