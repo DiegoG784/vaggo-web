@@ -72,7 +72,7 @@ export default function Page() {
     )
 
     // se resposta da api for 200, loga o usuário com a senha criada pelo forms e leva o usuário para a página dashboard
-    console.log(user)
+    // console.log(user)
 
     
     // transformar dados registro em JSON

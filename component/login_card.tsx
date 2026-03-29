@@ -65,7 +65,7 @@ export default function LoginCard({ onSubmit, loading }: LoginCardProps) {
         </label>
         <input
           type="password"
-          name="pass"
+          name="password"
           required
           placeholder="••••••••"
           className="

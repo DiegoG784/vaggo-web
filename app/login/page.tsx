@@ -17,6 +17,7 @@ export default function Page() {
 
     // remove qualquer campo desnecessário
     delete (values as any).passConfirm;
+    // delete values.passConfirm;
 
     try {
       const res = await fetch("http://localhost:3000/users/login", {
@@ -29,6 +30,7 @@ export default function Page() {
 
       if (res.ok) {
         localStorage.setItem("token", data.data.token);
+        localStorage.setItem("userId", data.data.user.id);
         console.log("Login bem-sucedido:", data);
         router.push("/user/dashboard");
       } else {
