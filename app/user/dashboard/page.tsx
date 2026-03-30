@@ -5,12 +5,13 @@
 import Header from "@/component/header"
 import Link from "next/link"
 import { useEffect, useState } from "react"
+import * as api from '@/app/api'
 
-function VehicleCard(raw_data:any) {
+function VehicleCard({raw_data}:any) {
     // const [data, setData] = useState(null)
-    const data = raw_data.raw_data
+    const data:api.VehicleResponse = raw_data
     // setData(raw_data)
-    console.log(data)
+    // console.log(data)
     
     if (data != null)
     return (
@@ -24,8 +25,9 @@ function VehicleCard(raw_data:any) {
 }
 
 export default function Page() {
-    const [carData, setCarData] = useState(null)
+    const [carData, setCarData] = useState<api.VehicleResponse | undefined>(undefined)
     const [userData, setUserData] = useState(null)
+    
     useEffect(() => {
         try {
             fetch(`http://localhost:3000/vehicles/${localStorage.getItem('userId')}`, {
@@ -52,13 +54,17 @@ export default function Page() {
                 setUserData(data.data)
             })
 
+            // api.fetch('')
+
     
         } catch (error) {
             console.log(error)
         }
+
+        // api.fetch('')
     }, [])
     
-    if ((carData != null && userData != null))
+    if ((carData != undefined && userData != undefined))
     return (
         <main>
 

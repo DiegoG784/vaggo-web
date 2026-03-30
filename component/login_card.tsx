@@ -39,7 +39,7 @@ export default function LoginCard({ onSubmit, loading }: LoginCardProps) {
 
       {/* Email */}
       <div className="flex flex-col gap-2 w-full">
-        <label className="text-sm text-gray-700 font-medium">
+        <label htmlFor="email" className="text-sm text-gray-700 font-medium">
           Email
         </label>
         <input
@@ -60,7 +60,7 @@ export default function LoginCard({ onSubmit, loading }: LoginCardProps) {
 
       {/* Senha */}
       <div className="flex flex-col gap-2 w-full">
-        <label className="text-sm text-gray-700 font-medium">
+        <label htmlFor="password" className="text-sm text-gray-700 font-medium">
           Senha
         </label>
         <input
