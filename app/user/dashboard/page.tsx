@@ -6,6 +6,7 @@ import Header from "@/component/header"
 import Link from "next/link"
 import { useEffect, useState } from "react"
 import * as api from '@/app/api'
+import { VehicleResponse, UserResponse } from "@/app/api"
 
 function VehicleCard({raw_data}:any) {
     // const [data, setData] = useState(null)
@@ -25,34 +26,43 @@ function VehicleCard({raw_data}:any) {
 }
 
 export default function Page() {
-    const [carData, setCarData] = useState<api.VehicleResponse | undefined>(undefined)
-    const [userData, setUserData] = useState(null)
+    const [carData, setCarData] = useState<VehicleResponse | undefined>(undefined)
+    const [userData, setUserData] = useState<UserResponse | undefined>(undefined)
     
     useEffect(() => {
         try {
-            fetch(`http://localhost:3000/vehicles/${localStorage.getItem('userId')}`, {
-            headers: { 
-                'Authorization': `Bearer ${localStorage.getItem('token')}`,
-                "Content-Type": "application/json" 
-            },
-            })
-            .then((res) => res.json())
-            .then((data) => {
-                // console.log(data);
-                setCarData(data.data)
-            })
+            api.call("vehicles/5", true, {dataOnly: true})
+            .then(data => setCarData(data as VehicleResponse))
 
-            fetch(`http://localhost:3000/users/${localStorage.getItem('userId')}`, {
-            headers: { 
-                'Authorization': `Bearer ${localStorage.getItem('token')}`,
-                "Content-Type": "application/json" 
-            },
-            })
-            .then((res) => res.json())
-            .then((data) => {
-                // console.log(data);
-                setUserData(data.data)
-            })
+            api.call(`users/${localStorage.getItem("userId")}`, true, {dataOnly: true})
+            .then(data => setUserData(data as UserResponse))
+            // .then(data => console.log(data as api.UserResponse))
+
+        
+            // fetch(`http://localhost:3000/vehicles/${localStorage.getItem('userId')}`, {
+            // fetch(`http://localhost:3000/vehicles/5`, {
+            // headers: { 
+            //     'Authorization': `Bearer ${localStorage.getItem('token')}`,
+            //     "Content-Type": "application/json" 
+            // },
+            // })
+            // .then((res) => res.json())
+            // .then((data) => {
+            //     // console.log(data);
+            //     setCarData(data.data)
+            // })
+
+            // fetch(`http://localhost:3000/users/${localStorage.getItem('userId')}`, {
+            // headers: { 
+            //     'Authorization': `Bearer ${localStorage.getItem('token')}`,
+            //     "Content-Type": "application/json" 
+            // },
+            // })
+            // .then((res) => res.json())
+            // .then((data) => {
+            //     // console.log(data);
+            //     setUserData(data.data)
+            // })
 
             // api.fetch('')
 
