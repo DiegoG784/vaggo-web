@@ -2,28 +2,110 @@
 
 export default function SearchBar() {
   return (
-    <div className="w-full flex justify-center">
-      
-      <div className="relative w-full max-w-md">
+    <div className="w-full">
 
-        {/* Ícone */}
-        <span className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400">
-          🔍
-        </span>
+      <div
+        className="
+          w-full
+          max-w-full
+          h-14
+          bg-white
+          border border-gray-200
+          rounded-full
+          shadow-sm
+          flex items-center
+          px-2
+          overflow-hidden
+        "
+      >
 
-        {/* Input */}
-        <input
-          type="text"
-          placeholder="Buscar vagas..."
+        {/* Onde */}
+        <div className="flex-1 min-w-0 px-4">
+          <p className="text-[11px] font-semibold text-gray-900">
+            Onde
+          </p>
+
+          <input
+            type="text"
+            placeholder="Buscar vagas"
+            className="
+              w-full
+              text-sm
+              text-gray-700
+              placeholder:text-gray-500
+              bg-transparent
+              outline-none
+              truncate
+            "
+          />
+        </div>
+
+        {/* Divider */}
+        <div className="w-px h-7 bg-gray-200 shrink-0"></div>
+
+        {/* Quando */}
+        <div className="flex-1 min-w-0 px-4">
+          <p className="text-[11px] font-semibold text-gray-900">
+            Horario de Disp.
+          </p>
+
+          <input
+            type="text"
+            placeholder="Insira a data"
+            className="
+              w-full
+              text-sm
+              text-gray-700
+              placeholder:text-gray-500
+              bg-transparent
+              outline-none
+              truncate
+            "
+          />
+        </div>
+
+        {/* Divider */}
+        <div className="w-px h-7 bg-gray-200 shrink-0"></div>
+
+        {/* Veículo */}
+        <div className="flex-1 min-w-0 px-4">
+          <p className="text-[11px] font-semibold text-gray-900">
+            Tipo
+          </p>
+
+          <input
+            type="text"
+            placeholder="Carro ou moto?"
+            className="
+              w-full
+              text-sm
+              text-gray-700
+              placeholder:text-gray-500
+              bg-transparent
+              outline-none
+              truncate
+            "
+          />
+        </div>
+
+        {/* Buscar */}
+        <button
           className="
-            input
-            w-full
-            pl-10   /* espaço pro ícone */
+            w-10 h-10
+            rounded-full
+            bg-gray-100
+            hover:bg-gray
+            text-white
+            flex items-center justify-center
+            transition
+            shrink-0
           "
-        />
+        >
+          🔍
+        </button>
 
       </div>
 
     </div>
-  );
+  )
 }

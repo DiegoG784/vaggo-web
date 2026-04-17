@@ -60,33 +60,115 @@ export default function Page() {
 
 
   return (
-    <main className="flex flex-col">
-        
-        <div className="flex flex-col items-center justify-center h-screen w-screen"> {/* change h/w-screen between 'full' or '100'. screens get messy */}
-            <section className="flex flex-col items-center bg-gray-300 w-1/3 h-2/4">
-                
-                <h1>Registrar Veículo</h1>
+    <main className="flex flex-col min-h-screen bg-gradient-to-b from-white to-gray-50">
+      <Header />
 
-                <form className="flex flex-col" onSubmit={handleRegister}>
+      <div className="flex flex-1 items-center justify-center px-4 py-10">
 
+        <section
+          className="
+            w-full max-w-lg
+            bg-white
+            border border-gray-200
+            rounded-2xl
+            shadow-sm
+            px-8 py-8
+          "
+        >
 
-                  <input type="text" name="brand" placeholder="Marca"/>
-                  <input type="text" name="model" placeholder="Modelo"/>
-                  <input type="text" name="color" placeholder="Cor"/>
-                  <input type="text" name="licensePlate" placeholder="Placa do Carro"/>
+          {/* Header */}
+          <div className="text-center mb-8">
+            <h1 className="text-2xl font-semibold text-gray-900">
+              Registrar veículo
+            </h1>
 
-                  <div className="flex flex-row">
-                    <label htmlFor="manufactureYear" className="mr-1">Data de Manufaturação:</label>
-                    <input type="date" name="manufactureYear"/>
-                  </div>
+            <p className="text-gray-500 text-sm mt-1">
+              Adicione as informações do seu carro
+            </p>
+          </div>
 
-                  <input type="submit" value={"Registrar"}/>
+          {/* Form */}
+          <form className="flex flex-col gap-4" onSubmit={handleRegister}>
 
-                </form>
+            {/* Marca + Modelo */}
+            <div className="grid grid-cols-2 gap-3">
+              <input
+                type="text"
+                name="brand"
+                placeholder="Marca"
+                className="input-clean"
+              />
 
-            </section>
-        </div>
+              <input
+                type="text"
+                name="model"
+                placeholder="Modelo"
+                className="input-clean"
+              />
+            </div>
 
+            {/* Cor + Placa */}
+            <div className="grid grid-cols-2 gap-3">
+              <input
+                type="text"
+                name="color"
+                placeholder="Cor"
+                className="input-clean"
+              />
+
+              <input
+                type="text"
+                name="licensePlate"
+                placeholder="Placa"
+                className="input-clean"
+              />
+            </div>
+
+            {/* Ano */}
+            <div className="flex flex-col gap-1">
+              <label className="text-sm text-gray-600">
+                Data de fabricação
+              </label>
+
+              <input
+                type="date"
+                name="manufactureYear"
+                className="input-clean"
+              />
+            </div>
+
+            {/* Botão */}
+            <button
+              type="submit"
+              className="
+                mt-4
+                py-3
+                rounded-lg
+                font-medium
+                text-white
+                bg-gray-900
+                hover:bg-black
+                transition
+              "
+            >
+              Registrar veículo
+            </button>
+
+            {/* Link */}
+            <div className="text-center text-sm">
+              <Link
+                href="/user/dashboard"
+                className="text-gray-600 hover:text-black hover:underline"
+              >
+                Voltar ao painel
+              </Link>
+            </div>
+
+          </form>
+
+        </section>
+
+      </div>
     </main>
   );
 }

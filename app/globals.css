@@ -1,29 +1,28 @@
 @import "tailwindcss";
 
-:root {
+/*:root {
   --background: #ffffff;
   --foreground: #171717;
-}
+} */
 
 /* html {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 } */
-
-body {
+/* body { */
   /* Gradiente vertical: branco → azul claro */
-  background: linear-gradient(to bottom, #ffffff 0%, #87bafc 100%);
+  /* background: linear-gradient(to bottom, #ffffff 0%, #ffffff 100%);
   /* Alternativa com cor mais suave: linear-gradient(to bottom, #ffffff 0%, #e0f2fe 100%); */
   
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  /* color: var(--foreground);
+ /* font-family: Arial, Helvetica, sans-serif; */
   
   /* width: 100%; */
-  min-height: 100vh;
+/*  min-height: 100vh;
   /* margin: 0; */
   /* padding: 0; */
-}
+/*/*} 
 
 /* .input {
   @apply px-4 py-3 rounded-lg border border-gray-300 bg-white/70 

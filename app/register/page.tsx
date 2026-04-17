@@ -87,85 +87,87 @@ export default function Page() {
 
 return (
   <main className="flex flex-col min-h-screen">
-    <Header />
+  <Header />
 
-    <div className="flex flex-1 items-center justify-center bg-[var(--background-soft)] px-4">
+  <div className="flex flex-1 items-center justify-center px-4 mt-6">
 
-      <section className="
-        w-full max-w-md        /* mais largo */
-        min-h-[520px]          /* menos alto */
-        bg-white/80 backdrop-blur-xl
-        border border-white/30
-        rounded-2xl
-        shadow-2xl
-        px-10 py-8             /* mais equilibrado */
-        flex flex-col justify-between
-      ">
+    <section className="
+      w-full max-w-lg
+      bg-white
+      border border-gray-200
+      rounded-2xl
+      shadow-sm
+      px-8 py-8
+    ">
 
-        {/* Header */}
-        <div className="text-center">
-          <h1 className="
-            text-4xl font-bold
-            bg-gradient-to-r from-blue-600 to-blue-400
-            bg-clip-text text-transparent
-          ">
-            Vaggo
-          </h1>
-          <p className="text-gray-500 text-base mt-2">
-            Crie sua conta
-          </p>
+      {/* Header */}
+      <div className="text-center mb-6">
+        <h1 className="text-2xl font-semibold text-gray-900">
+          Criar conta
+        </h1>
+        <p className="text-gray-500 text-sm mt-1">
+          Preencha seus dados
+        </p>
+      </div>
+
+      {/* Form */}
+      <form className="flex flex-col gap-4" onSubmit={handleRegister}>
+
+        {/* Nome */}
+        <input type="text" name="name" placeholder="Nome completo" className="input-clean" />
+
+        {/* CPF + Sexo */}
+        <div className="grid grid-cols-2 gap-3">
+          <input type="text" name="cpf" placeholder="CPF" className="input-clean" />
+
+          <select name="gender" className="input-clean">
+            <option value="">Sexo</option>
+            <option value="M">Masculino</option>
+            <option value="F">Feminino</option>
+          </select>
         </div>
 
-        {/* Form */}
-        <form className="flex flex-col gap-4 mt-6" onSubmit={handleRegister}>
+        {/* Data */}
+        <input type="date" name="birthDate" className="input-clean" />
 
-          <input type="text" name="name" placeholder="Nome completo" className="input" />
-          <input type="text" name="cpf" placeholder="CPF" className="input" />
+        {/* Email */}
+        <input type="email" name="email" placeholder="E-mail" className="input-clean" />
 
-          <div className="flex flex-col gap-1">
-            <label className="text-sm text-gray-700">Sexo</label>
-            <select name="gender" className="input">
-              <option value="M">Masculino</option>
-              <option value="F">Feminino</option>
-            </select>
-          </div>
+        {/* Telefone */}
+        <input type="text" name="phone" placeholder="(XX) XXXXX-XXXX" className="input-clean" />
 
-          <div className="flex flex-col gap-1">
-            <label className="text-sm text-gray-700">Data de nascimento</label>
-            <input type="date" name="birthDate" className="input" />
-          </div>
+        {/* Senhas */}
+        <div className="grid grid-cols-2 gap-3">
+          <input type="password" name="password" placeholder="Senha" className="input-clean" />
+          <input type="password" name="passConfirm" placeholder="Confirmar" className="input-clean" />
+        </div>
 
-          <input type="email" name="email" placeholder="E-mail" className="input" />
-          <input type="text" name="phone" placeholder="(XX) XXXXX-XXXX" className="input" />
+        {/* Botão */}
+        <button
+          type="submit"
+          className="
+            mt-4
+            py-3
+            rounded-lg
+            font-medium
+            text-white
+            bg-gray-900
+            hover:bg-black
+            transition
+          "
+        >
+          Registrar
+        </button>
+        <div className="text-center text-sm">
+  <Link href="/login" className="text-gray-900 hover:underline">
+    Já possui uma conta?
+  </Link>
+</div>
+      </form>
 
-          <input type="password" name="password" placeholder="Senha" className="input" />
-          <input type="password" name="passConfirm" placeholder="Confirmar senha" className="input" />
+    </section>
 
-          <button
-            type="submit"
-            className="
-              mt-4
-              px-10 py-3
-              self-center
-              rounded-lg
-              font-semibold
-              text-white
-              bg-gradient-to-r from-blue-600 to-blue-500
-              hover:from-blue-700 hover:to-blue-600
-              shadow-md
-              hover:scale-105
-              active:scale-95
-              transition-all
-            "
-          >
-            Registrar
-          </button>
-
-        </form>
-
-      </section>
-
-    </div>
-  </main>
+  </div>
+</main>
 );
 }
