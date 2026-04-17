@@ -25,6 +25,13 @@ export default function RegisterCard({
       subtitle: "Adicione as informações do carro",
       button: "Registrar veículo",
       backLink: "/account"
+    },
+
+    property: {
+      title: "Registrar Propriedade",
+      subtitle: "Adicione as informações da propriedade",
+      button: "Registrar Propriedade",
+      backLink: "/account"
     }
   }
 
