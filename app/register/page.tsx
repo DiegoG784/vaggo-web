@@ -1,5 +1,6 @@
 'use client'
 import Header from "@/component/header"
+import RegisterCard from "@/component/register_card"
 import { The_Nautigal } from "next/font/google";
 import Link from "next/link"
 // import Image from "next/image";
@@ -84,90 +85,16 @@ export default function Page() {
     // router.push('/user/dashboard')
 
   }
-
 return (
-  <main className="flex flex-col min-h-screen">
-  <Header />
+    <main className="min-h-screen bg-gray-50">
+      <Header />
 
-  <div className="flex flex-1 items-center justify-center px-4 mt-6">
-
-    <section className="
-      w-full max-w-lg
-      bg-white
-      border border-gray-200
-      rounded-2xl
-      shadow-sm
-      px-8 py-8
-    ">
-
-      {/* Header */}
-      <div className="text-center mb-6">
-        <h1 className="text-2xl font-semibold text-gray-900">
-          Criar conta
-        </h1>
-        <p className="text-gray-500 text-sm mt-1">
-          Preencha seus dados
-        </p>
+      <div className="flex justify-center py-10 px-4">
+        <RegisterCard
+          type="user"
+          onSubmit={handleRegister}
+        />
       </div>
-
-      {/* Form */}
-      <form className="flex flex-col gap-4" onSubmit={handleRegister}>
-
-        {/* Nome */}
-        <input type="text" name="name" placeholder="Nome completo" className="input-clean" />
-
-        {/* CPF + Sexo */}
-        <div className="grid grid-cols-2 gap-3">
-          <input type="text" name="cpf" placeholder="CPF" className="input-clean" />
-
-          <select name="gender" className="input-clean">
-            <option value="">Sexo</option>
-            <option value="M">Masculino</option>
-            <option value="F">Feminino</option>
-          </select>
-        </div>
-
-        {/* Data */}
-        <input type="date" name="birthDate" className="input-clean" />
-
-        {/* Email */}
-        <input type="email" name="email" placeholder="E-mail" className="input-clean" />
-
-        {/* Telefone */}
-        <input type="text" name="phone" placeholder="(XX) XXXXX-XXXX" className="input-clean" />
-
-        {/* Senhas */}
-        <div className="grid grid-cols-2 gap-3">
-          <input type="password" name="password" placeholder="Senha" className="input-clean" />
-          <input type="password" name="passConfirm" placeholder="Confirmar" className="input-clean" />
-        </div>
-
-        {/* Botão */}
-        <button
-          type="submit"
-          className="
-            mt-4
-            py-3
-            rounded-lg
-            font-medium
-            text-white
-            bg-gray-900
-            hover:bg-black
-            transition
-          "
-        >
-          Registrar
-        </button>
-        <div className="text-center text-sm">
-  <Link href="/login" className="text-gray-900 hover:underline">
-    Já possui uma conta?
-  </Link>
-</div>
-      </form>
-
-    </section>
-
-  </div>
-</main>
-);
+    </main>
+  );
 }
