@@ -9,10 +9,6 @@ import { useRouter, redirect } from "next/navigation"
 import { useEffect, useState } from 'react';
 
 
-
-
-
-
 export default function Page() {
   //user login page:
   //  - credentials inserted will be validated and see if email and pass matches from api call
