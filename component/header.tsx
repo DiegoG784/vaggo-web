@@ -4,6 +4,9 @@ import { useState } from 'react'
 import SearchBar from './search_bar'
 import LoginCard from './login_card'
 import BlurOverlay from './blur_overlay'
+import * as api from '@/app/api'
+import { useRouter } from 'next/navigation'
+
 
 interface HeaderProps {
   showSearch?: boolean
@@ -12,11 +15,27 @@ interface HeaderProps {
 export default function Header({ showSearch = false }: HeaderProps) {
   const [open, setOpen] = useState(false)
   const [showLogin, setShowLogin] = useState(false)
+  const router = useRouter()
 
-  function handleLogin(e: React.FormEvent<HTMLFormElement>) {
+  async function handleLogin(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault()
+
+    const formData = new FormData(e.currentTarget)
+    const values = Object.fromEntries(formData) as {email: string, pass: string}
+
+    delete (values as any).passConfirm;
+    
+    const res = await api.call("users/login", false, {body: JSON.stringify(values), dataOnly: true, contentType: "json", method: "POST"}) as any
+    console.log(res)
     console.log('Login enviado')
     setShowLogin(false)
+
+
+    localStorage.setItem("token", res.token)
+    localStorage.setItem("userId", res.user.id)
+    // console.log(localStorage)
+
+    router.push('/user/dashboard')
   }
 
   return (

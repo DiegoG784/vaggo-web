@@ -42,7 +42,7 @@ export default function Page() {
   useEffect(() => {
     async function loadData() {
       try {
-        const vehicle = await api.call("vehicles/5", true, {
+        const vehicle = await api.call("vehicles/1", true, {
           dataOnly: true
         })
 
