@@ -1,10 +1,4 @@
-export default function TabPage({children, label}:any) {
-
-    const tabName = label
-
-    return (
-        <section>
-            {children}
-        </section>
-    )
+// component/tabPage.tsx
+export default function TabPage({ children, label }: any) {
+  return <section>{children}</section>
 }

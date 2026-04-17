@@ -1,23 +1,22 @@
-import TabPage from "@/component/tabPage"
-import TabSidebar from "./tabSidebar"
-
-interface TabContainerProps {
-    subPages:typeof TabPage[],
-    sidebar:typeof TabSidebar
-}
-
-export default function TabContainer({subPages, sidebar}:any) {
-
-    let tabPages = subPages
-    let CurrentTab =  []
-    let tabSidebar = sidebar
-
-    // console.log(tabPages)
-    // console.log(tabSidebar)
-
-    return (
-        <section>
-
-        </section>
-    )
+// component/tabContainer.tsx
+export default function TabContainer({
+  subPages,
+  activeTab,
+}: any) {
+  return (
+    <section className="lg:col-span-3">
+      <div
+        className="
+          bg-white
+          border border-gray-200
+          rounded-3xl
+          shadow-sm
+          p-8
+          min-h-[500px]
+        "
+      >
+        {subPages[activeTab]}
+      </div>
+    </section>
+  )
 }

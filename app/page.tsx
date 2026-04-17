@@ -1,36 +1,23 @@
 'use client'
 import Header from "@/component/header"
 import SpotCarousel from "@/component/spot_carousel";
-import SearchBar from "@/component/search_bar";
 
 export default function Home() {
   return (
-    <main>
-      <Header />
+<main className="bg-gradient-to-b from-white to-gray-50 min-h-screen">
+  <Header showSearch />
 
-  <section className="flex items-center justify-center">
-         <SearchBar/>
-</section>
- 
-      <section className="section-default bg-[var(--background-soft)]">
-        <div className="container-default">
+  <section className="section-default">
+        <div className="container-default mt-6">
+          <div className="rounded-2xl shadow-sm p-6">
+            <SpotCarousel title="Pontos de interesse com base na sua localização" />
 
-          <h1 className="text-2xl font-semibold text-center">
-            Pontos de interesse com base na sua localização
-          </h1>
+            <div className="h-16"></div>
 
-          <SpotCarousel />
+            <SpotCarousel title="Pontos de interesse com reservas anteriores"/>
 
-          <div className="h-16"></div>
-
-          <h1 className="text-2xl font-semibold mb-8 text-center">
-            Pontos de interesse com reservas anteriores
-          </h1>
-
-          <SpotCarousel />
-
-          <div className="h-12"></div>
-
+            <div className="h-12"></div>
+          </div>
         </div>
       </section>
     </main>
