@@ -5,9 +5,9 @@ import Header from "@/component/header"
 import { useState } from "react"
 import Link from "next/link"
 
-import TabContainer from "@/component/tabContainer"
-import TabPage from "@/component/tabPage"
-import TabSidebar from "@/component/tabSidebar"
+import TabContainer from "@/component/container/TabContainer/tabContainer"
+import TabPage from "@/component/container/TabContainer/tabPage"
+import TabSidebar from "@/component/container/TabContainer/tabSidebar"
 import VehicleCard from "@/component/vehicle_card"
 
 export default function Page() {
@@ -38,15 +38,15 @@ export default function Page() {
                     <Link
                         href="/user/vehicle/register"
                         className="
-          px-4 py-2
-          rounded-xl
-          bg-gray-900
-          text-white
-          text-sm
-          font-medium
-          hover:bg-black
-          transition
-        "
+                            px-4 py-2
+                            rounded-xl
+                            bg-gray-900
+                            text-white
+                            text-sm
+                            font-medium
+                            hover:bg-black
+                            transition
+                        "
                     >
                         + Novo veículo
                     </Link>
