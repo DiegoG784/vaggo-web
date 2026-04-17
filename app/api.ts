@@ -10,9 +10,10 @@ const contentTypeTable : Record<contentTypeSupport, string> = {
 
 interface IcallParams {
     header?: HeadersInit,
-    body?: BodyInit,
+    body?: any,
+    method?: any,
     rawResponse?:boolean,
-    dataOnly: boolean,
+    dataOnly?: boolean,
     contentType?: contentTypeSupport
 }
 
@@ -32,26 +33,28 @@ export async function call(uri:string, useToken?:boolean) : Promise<ApiResponse 
 export async function call(uri:string, useToken:boolean, params?:IcallParams) : Promise<ApiResponse | DataResponse | Response | undefined>
 export async function call(uri:string, useToken:boolean = true, params?:IcallParams) : Promise<ApiResponse | DataResponse | Response | undefined>
 {
-    console.log(`params: -URI:${uri}, -Token?:${useToken}, Params:${JSON.stringify(params)}`)
+    console.log(`params: -URI:${uri}, -Token?:${useToken}, Params:${JSON.stringify(params)}, content-type: ${params?.contentType}`)
 
-    let requestHeader: any = {}
+    let requestHeader: HeadersInit = {}
     let requestBody: any = {}
+    let requestMethod = params?.method ? params.method : "GET"
 
     useToken ? requestHeader['Authorization'] = `Bearer ${localStorage.getItem('token')}` : null
 
     if (params) {
         params.contentType ? requestHeader['Content-Type'] = contentTypeTable[params.contentType] : null
         
-        params.body ? Object.assign(requestBody, params.body) : null
+        params.body ? requestBody = params.body : null
         params.header ? Object.assign(requestHeader, params.header) : null
+        params.method ? null : params.method = "GET"
         // params.header ? requestHeader = {...requestHeader, ...params.header} : null
         // params.body ? requestBody = {...requestBody, ...params.body} : null
     }
 
-    requestHeader = isEmpty(requestHeader) ? undefined : requestHeader
+    requestHeader = isEmpty(requestHeader) ? {mode: "no-cors"} : requestHeader
     requestBody = isEmpty(requestBody) ? undefined : requestBody
 
-    const res = await fetch(`${API_ADDRESS}${uri}`, {headers: requestHeader, body: requestBody})
+    const res = await fetch(`${API_ADDRESS}${uri}`, {headers: requestHeader, body: requestBody, method:requestMethod})
     
     // console.log(res)
 
