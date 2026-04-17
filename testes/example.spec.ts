@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test';
 
 test('Deve cadastrar usuário e salvar token', async ({ page }) => {
   // ajusta a URL conforme seu Next está rodando (local ou CI)
-  await page.goto('http://localhost:3000/register');
+  await page.goto('http://localhost:3001/register');
 
   // Preenche o formulário
   await page.getByPlaceholder('Nome completo').fill('João Silva');
