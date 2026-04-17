@@ -27,7 +27,8 @@ test('Deve cadastrar usuário e salvar token', async ({ page }) => {
 test('Deve logar usuário e salvar token no localStorage', async ({ page }) => {
   await page.goto('http://localhost:3001/login');
 
-  await page.route('http://localhost:3001/users/login', async (route) => {
+  // intercepta onde o código REAL faz o fetch
+  await page.route('http://localhost:3000/users/login', async (route) => {
     const request = route.request();
     const postData = await request.postData();
     if (postData === null) {
