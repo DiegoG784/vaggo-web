@@ -6,12 +6,13 @@ import SearchBar from "@/component/search_bar";
 export default function Home() {
   return (
     <main>
+      
       <Header />
-
-  <section className="flex items-center justify-center">
-         <SearchBar/>
-</section>
- 
+      
+      <section className="flex items-center justify-center">
+        <SearchBar/>
+      </section>
+      
       <section className="section-default bg-[var(--background-soft)]">
         <div className="container-default">
 
@@ -33,6 +34,7 @@ export default function Home() {
 
         </div>
       </section>
+    
     </main>
   );
 }

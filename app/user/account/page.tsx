@@ -5,17 +5,14 @@ import TabContainer from "@/component/tabContainer"
 import TabPage from "@/component/tabPage"
 import TabSidebar from "@/component/tabSidebar"
 
-const TabPageTest = (
-    <TabPage label="Tab 1" key={1}>
+const TabPageTest = <TabPage label="Tab 1" key={1}>
         <p>hello!</p>
     </TabPage>
-)
 
-const TabPageTest2 = (
-    <TabPage label='Tab 2' key={2}>
+
+const TabPageTest2 = <TabPage label='Tab 2' key={2}>
         <p>hello there!</p>
     </TabPage>
-)
 
 export default function Page() {
 

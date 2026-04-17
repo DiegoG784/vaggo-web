@@ -6,11 +6,12 @@ import Header from "@/component/header"
 import Link from "next/link"
 import { useEffect, useState } from "react"
 import * as api from '@/app/api'
-import { VehicleResponse, UserResponse } from "@/app/api"
+import { VehicleResponse } from "@/interface/api/vehicle"
+import { UserResponse } from "@/interface/api/user"
 
 function VehicleCard({raw_data}:any) {
     // const [data, setData] = useState(null)
-    const data:api.VehicleResponse = raw_data
+    const data:VehicleResponse = raw_data
     // setData(raw_data)
     // console.log(data)
     
@@ -31,7 +32,7 @@ export default function Page() {
     
     useEffect(() => {
         try {
-            api.call("vehicles/5", true, {dataOnly: true})
+            api.call("vehicles/1", true, {dataOnly: true})
             .then(data => setCarData(data as VehicleResponse))
 
             api.call(`users/${localStorage.getItem("userId")}`, true, {dataOnly: true})

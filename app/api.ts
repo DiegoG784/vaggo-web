@@ -1,3 +1,5 @@
+import { ApiResponse, DataResponse } from "@/interface/api/api"
+
 const API_ADDRESS = "http://localhost:3000/"
 
 type contentTypeSupport = "json"
@@ -5,54 +7,6 @@ type contentTypeSupport = "json"
 const contentTypeTable : Record<contentTypeSupport, string> = {
     'json': 'application/json'
 }
-
-interface ApiResponse {
-    success?: boolean,
-    message?: string,
-    data?: DataResponse | DataResponse[]
-}
-
-interface DataResponse {
-    id?: number,
-    user?: UserResponse | UserPreview | Pick<UserResponse, "id" | "email" | "permissionLevel">
-}
-
-export interface UserResponse extends DataResponse {
-    email: string,
-    lastLogin: string, //JS Date Object string format
-    isBlocked: boolean,
-    isAdmin: boolean,
-    permissionLevel: number,
-    personId?: number,
-    PES_INT_ID?: number,
-    person: PersonResponse
-}
-
-type UserPreview = Pick<UserResponse, "id" | "email" >
-
-interface PersonResponse {
-    id: number,
-    name: string,
-    cpf: string,
-    gender: string,
-    phone: string,
-    birthDate: string, //yyyy-mm-dd
-    registrationDate: string, //yyyy-mm-dd
-    isActive: boolean
-}
-
-export interface VehicleResponse extends DataResponse {
-    brand: string,
-    model: string,
-    color: string,
-    licensePlate: string,
-    manufactureYear: string,
-    isActive: boolean,
-    userId?: number,
-    USU_INT_ID?: number,
-}
-
-// type DataResponses = UserResponse | VehicleResponse
 
 interface IcallParams {
     header?: HeadersInit,
