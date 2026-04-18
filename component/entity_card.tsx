@@ -1,7 +1,10 @@
 // component/entity_card.tsx
 'use client'
 
+import { useState } from "react"
 import Link from "next/link"
+import BlurOverlay from "@/component/blur_overlay"
+import EditCard from "@/component/edit_card"
 
 type CardType = "vehicle" | "property" | "spot"
 
@@ -42,8 +45,20 @@ export default function EntityCard({
   data,
   editHref = "#"
 }: EntityCardProps) {
+  const [openEdit, setOpenEdit] = useState(false)
+
+  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault()
+
+    const formData = new FormData(e.currentTarget)
+    const values = Object.fromEntries(formData)
+
+    console.log("Dados editados:", values)
+
+    setOpenEdit(false)
+  }
+
   function renderContent() {
-    /* VEHICLE */
     if (type === "vehicle") {
       const vehicle = data as VehicleData
 
@@ -67,7 +82,6 @@ export default function EntityCard({
       )
     }
 
-    /* PROPERTY */
     if (type === "property") {
       const property = data as PropertyData
 
@@ -89,7 +103,6 @@ export default function EntityCard({
       )
     }
 
-    /* SPOT */
     const spot = data as SpotData
 
     return (
@@ -110,45 +123,114 @@ export default function EntityCard({
     )
   }
 
+  function renderPopup() {
+    if (type === "vehicle") {
+      return (
+        <EditCard
+          type="vehicle"
+          onSubmit={handleSubmit}
+          defaultValues={data}
+          hasBlur={true}
+        />
+      )
+    }
+
+    if (type === "property") {
+      return (
+        <EditCard
+          type="property"
+          onSubmit={handleSubmit}
+          defaultValues={data}
+          hasBlur={true}
+        />
+      )
+    }
+
+    if (type === "spot") {
+      return (
+        <EditCard
+          type="spot"
+          onSubmit={handleSubmit}
+          defaultValues={data}
+          hasBlur={true}
+        />
+      )
+    }
+
+    return null
+  }
+
   return (
-    <div
-      className="
-        border border-gray-200
-        rounded-2xl
-        p-5
-        bg-white
-        shadow-sm
-        hover:shadow-md
-        transition
-      "
-    >
-      <div className="flex items-start justify-between gap-4">
+    <>
+      {/* CARD */}
+      <div
+        className="
+          border border-gray-200
+          rounded-2xl
+          p-5
+          bg-white
+          shadow-sm
+          hover:shadow-md
+          transition
+        "
+      >
+        <div className="flex items-start justify-between gap-4">
 
-        {/* Dados */}
-        <div className="flex-1">
-          {renderContent()}
+          <div className="flex-1">
+            {renderContent()}
+          </div>
+
+          <button
+            onClick={() => setOpenEdit(true)}
+            className="
+              px-4 py-2
+              rounded-xl
+              text-sm
+              font-medium
+              bg-gray-900
+              text-white
+              hover:bg-black
+              transition
+              shrink-0
+            "
+          >
+            Editar
+          </button>
+
         </div>
-
-        {/* Botão */}
-        <Link
-          href={editHref}
-          className="
-            px-4 py-2
-            rounded-xl
-            text-sm
-            font-medium
-            bg-gray-900
-            text-white
-            hover:bg-black
-            transition
-            shrink-0
-          "
-        >
-          Editar
-        </Link>
-
       </div>
-    </div>
+
+      {/* POPUP */}
+      <BlurOverlay
+        show={openEdit}
+        onClick={() => setOpenEdit(false)}
+      />
+
+      {openEdit && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center px-4">
+          <div className="relative w-full max-w-lg">
+
+            {renderPopup()}
+
+            <button
+              onClick={() => setOpenEdit(false)}
+              className="
+                absolute -top-3 -right-3
+                w-9 h-9
+                rounded-full
+                bg-white
+                border border-gray-200
+                shadow-md
+                hover:bg-gray-100
+              "
+            >
+              ✕
+            </button>
+
+          </div>
+        </div>
+      )}
+    </>
   )
 }
 
