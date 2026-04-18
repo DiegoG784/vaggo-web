@@ -1,6 +1,7 @@
 'use client'
 
 import Link from "next/link"
+import { useEffect } from "react"
 
 interface Spot {
   id: number
@@ -14,6 +15,8 @@ interface SpotProps {
 }
 
 export default function SpotCard({ spot }: SpotProps) {
+
+
   return (
     <div className="
       w-[260px]

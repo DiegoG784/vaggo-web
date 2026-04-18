@@ -1,7 +1,7 @@
 import { DataResponse } from "./api";
 import { VehicleTypes } from "./vehicle";
 
-interface ParkingSpotResponse extends DataResponse {
+export interface ParkingSpotResponse extends DataResponse {
     id: number
     size: string
     status: string

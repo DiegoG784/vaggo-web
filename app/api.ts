@@ -18,7 +18,7 @@ interface IcallParams {
 }
 
 
-function isEmpty(obj:object): boolean {
+export function isEmpty(obj:object): boolean {
     return Object.keys(obj).length === 0
 }
 
@@ -39,7 +39,9 @@ export async function call(uri:string, useToken:boolean = true, params?:IcallPar
     let requestBody: any = {}
     let requestMethod = params?.method ? params.method : "GET"
 
-    useToken ? requestHeader['Authorization'] = `Bearer ${localStorage.getItem('token')}` : null
+    if (typeof window !== "undefined") {
+        useToken ? requestHeader['Authorization'] = `Bearer ${localStorage.getItem('token')}` : null
+    }
 
     if (params) {
         params.contentType ? requestHeader['Content-Type'] = contentTypeTable[params.contentType] : null

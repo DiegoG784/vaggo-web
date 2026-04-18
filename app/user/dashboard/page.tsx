@@ -4,7 +4,8 @@ import Header from "@/component/header"
 import Link from "next/link"
 import { useEffect, useState } from "react"
 import * as api from "@/app/api"
-import { VehicleResponse, UserResponse } from "@/app/api"
+import { VehicleResponse } from "@/interface/api/vehicle"
+import { UserResponse } from "@/interface/api/user"
 
 function VehicleCard({ raw_data }: any) {
   const data: VehicleResponse = raw_data
