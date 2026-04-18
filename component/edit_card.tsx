@@ -103,7 +103,7 @@ export default function EditCard({
             <input name="name" defaultValue={defaultValues.name} placeholder="Nome completo" className={inputStyle} />
 
             <div className="grid grid-cols-2 gap-3">
-              <input name="cpf" defaultValue={defaultValues.cpf} placeholder="CPF" className={inputStyle} />
+              {/* <input name="cpf" defaultValue={defaultValues.cpf} placeholder="CPF" className={inputStyle} /> */}
 
               <select name="gender" defaultValue={defaultValues.gender} className={inputStyle}>
                 <option value="">Sexo</option>

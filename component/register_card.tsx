@@ -3,7 +3,7 @@
 import Link from "next/link"
 
 interface RegisterCardProps {
-  type: "user" | "vehicle"
+  type: "user" | "vehicle" | "property"
   onSubmit: (e: React.FormEvent<HTMLFormElement>) => void
 }
 
@@ -24,14 +24,14 @@ export default function RegisterCard({
       title: "Registrar veículo",
       subtitle: "Adicione as informações do carro",
       button: "Registrar veículo",
-      backLink: "/account"
+      backLink: "/user/account"
     },
 
     property: {
       title: "Registrar Propriedade",
       subtitle: "Adicione as informações da propriedade",
       button: "Registrar Propriedade",
-      backLink: "/account"
+      backLink: "/user/account"
     }
   }
 
@@ -101,6 +101,25 @@ export default function RegisterCard({
             </div>
 
             <input type="date" name="manufactureYear" className="input-clean" />
+          </>
+        )}
+
+        {/* PROPERTY */}
+        {type === "property" && (
+          <>
+            <div className="grid grid-cols-2 gap-3">
+              <input name="name" placeholder="Nome" className="input-clean" />
+              <input name="type" placeholder="Tipo" className="input-clean" />
+            </div>
+            <input name="description" placeholder="Descrição" className="input-clean" />
+            <input name="totalCapacity" placeholder="Capacidade Total" className="input-clean" />
+            <div className="grid grid-cols-2 gap-3">
+              <input name="number" placeholder="Número" className="input-clean" />
+              <input name="zipcode" placeholder="CEP" className="input-clean" />
+              <input name="complement" placeholder="Complemento" className="input-clean" />
+            </div>
+
+
           </>
         )}
 

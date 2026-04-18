@@ -2,7 +2,7 @@
 'use client'
 
 import Header from "@/component/header"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import Link from "next/link"
 
 import TabContainer from "@/component/container/TabContainer/tabContainer"
@@ -11,6 +11,14 @@ import TabSidebar from "@/component/container/TabContainer/tabSidebar"
 
 import EntityCard from "@/component/entity_card"
 import EditCard from "@/component/edit_card"
+
+import { UserResponse } from "@/interface/api/user"
+import { PropertyResponse } from "@/interface/api/property"
+import { ParkingSpotResponse } from "@/interface/api/spot"
+
+import * as api from "@/app/api"
+import { VehicleResponse } from "@/interface/api/vehicle"
+
 
 function ProfileItem({
   label,
@@ -35,19 +43,46 @@ function ProfileItem({
 export default function Page() {
   const [activeTab, setActiveTab] = useState("Perfil")
   const [isEditing, setIsEditing] = useState(false)
+  const [user, setUser] = useState<UserResponse | undefined>(undefined)
+  const [vehicles, setVehicles] = useState<VehicleResponse[] | undefined>(undefined)
+  const [properties, setProperties] = useState<PropertyResponse[] | undefined>(undefined)
+  const [spots, setSpots] = useState<ParkingSpotResponse[] | undefined>(undefined)
 
-  const user = {
-    email: "galvian@email.com",
-    lastLogin: "2026-04-17T10:30:00.000Z",
-    person: {
-      name: "Galvian",
-      cpf: "123.456.789-00",
-      phone: "(11) 99999-9999",
-      birthDate: "1999-08-15",
-      isActive: true
+  // const user = {
+  //   email: "galvian@email.com",
+  //   lastLogin: "2026-04-17T10:30:00.000Z",
+  //   person: {
+  //     name: "Galvian",
+  //     cpf: "123.456.789-00",
+  //     phone: "(11) 99999-9999",
+  //     birthDate: "1999-08-15",
+  //     isActive: true
+  //   }
+  // }
+
+  useEffect(
+    () => {
+      const query = async () => {
+        const userData = await api.call(`users/${localStorage.getItem("userId")}`, true, { dataOnly: true })
+        setUser(userData as UserResponse)
+
+        const vehicleData = await api.call(`vehicles/my-vehicles`, true, { dataOnly: true })
+        setVehicles(vehicleData as VehicleResponse[])
+
+        const propertyData = await api.call(`properties/my-properties`, true, { dataOnly: true })
+        setProperties(propertyData as PropertyResponse[])
+        
+        const spotData = await api.call(`properties/my-properties`, true, { dataOnly: true })
+        setSpots(spotData as ParkingSpotResponse[])
+      }
+      query()
     }
-  }
+    , [])
 
+  if (!user) return (<></>)
+  if (!vehicles) return (<></>)
+  if (!properties) return (<></>)
+  if (!spots) return (<></>)
   const subPages = {
     Perfil: (
       <TabPage label="Perfil">
@@ -62,10 +97,9 @@ export default function Page() {
             <span
               className={`
                 px-3 py-1 rounded-full text-xs font-medium
-                ${
-                  user.person.isActive
-                    ? "bg-green-100 text-green-700"
-                    : "bg-red-100 text-red-700"
+                ${user.person.isActive
+                  ? "bg-green-100 text-green-700"
+                  : "bg-red-100 text-red-700"
                 }
               `}
             >
@@ -123,29 +157,22 @@ export default function Page() {
         </div>
 
         <div className="space-y-4">
-          <EntityCard
-            type="vehicle"
-            editHref="/user/vehicle/register"
-            data={{
-              brand: "Honda",
-              model: "Civic Touring",
-              color: "Preto",
-              licensePlate: "ABC-1234",
-              manufactureYear: "2022-01-01"
-            }}
-          />
+          {
+            vehicles.map(vehicle => {
+              return (<EntityCard
+                type="vehicle"
+                editHref="/user/vehicle/register"
+                data={{
+                  brand: vehicle.brand,
+                  model: vehicle.model,
+                  color: vehicle.color,
+                  licensePlate: vehicle.licensePlate,
+                  manufactureYear: vehicle.manufactureYear
+                }}
+              />)
+            })
+          }
 
-          <EntityCard
-            type="vehicle"
-            editHref="/user/vehicle/register"
-            data={{
-              brand: "Toyota",
-              model: "Corolla",
-              color: "Prata",
-              licensePlate: "XYZ-8899",
-              manufactureYear: "2020-01-01"
-            }}
-          />
         </div>
       </TabPage>
     ),
@@ -166,29 +193,23 @@ export default function Page() {
         </div>
 
         <div className="space-y-4">
-          <EntityCard
-            type="property"
-            editHref="/property/register"
-            data={{
-              name: "Shopping Interlagos",
-              type: "Estacionamento",
-              description: "Grande fluxo diário",
-              totalCapacity: 250,
-              addressId: 12
-            }}
-          />
-
-          <EntityCard
-            type="property"
-            editHref="/property/register"
-            data={{
-              name: "Aeroporto Congonhas",
-              type: "Garagem Coberta",
-              description: "Vagas premium",
-              totalCapacity: 80,
-              addressId: 19
-            }}
-          />
+          {
+            properties.map(property => {
+              return (
+                <EntityCard
+                  type="property"
+                  editHref="/property/register"
+                  data={{
+                    name: property.name,
+                    type: property.type,
+                    description: property.description,
+                    totalCapacity: property.totalCapacity,
+                    addressId: property.addressId
+                  }}
+                />
+              )
+            })
+          }
         </div>
       </TabPage>
     ),
@@ -209,7 +230,26 @@ export default function Page() {
         </div>
 
         <div className="space-y-4">
-          <EntityCard
+          {
+            spots.map(spot => {
+              return (
+                <EntityCard
+                  type="spot"
+                  editHref="/spot/register"
+                  data={{
+                    size: spot.size,
+                    status: spot.status,
+                    identifier: spot.identifier,
+                    isCovered: spot.isCovered,
+                    approvalStatus: spot.approvalStatus,
+                    allowedVehicles: spot.allowedVehicles,
+                    operatingHours: spot.operatingHours
+                  }}
+                />
+              )
+            })
+          }
+          {/* <EntityCard
             type="spot"
             editHref="/spot/register"
             data={{
@@ -221,21 +261,8 @@ export default function Page() {
               allowedVehicles: "Carro",
               operatingHours: "08:00 às 22:00"
             }}
-          />
+          /> */}
 
-          <EntityCard
-            type="spot"
-            editHref="/spot/register"
-            data={{
-              size: 1,
-              status: "OCUPADA",
-              identifier: "B-03",
-              isCovered: false,
-              approvalStatus: "APROVADA",
-              allowedVehicles: "Moto",
-              operatingHours: "24h"
-            }}
-          />
         </div>
       </TabPage>
     ),
@@ -304,7 +331,7 @@ export default function Page() {
 
       </section>
 
-      {/* 🔥 MODAL EDIT */}
+      {/* EDIT DO MODAL */}
       {isEditing && (
         <div
           className="
@@ -322,24 +349,26 @@ export default function Page() {
               hasBlur
               defaultValues={{
                 name: user.person.name,
-                cpf: user.person.cpf,
+                // cpf: user.person.cpf,
                 phone: user.person.phone,
                 birthDate: user.person.birthDate,
                 email: user.email
               }}
-              onSubmit={(e) => {
+              onSubmit={async (e) => {
                 e.preventDefault()
 
                 const formData = new FormData(e.currentTarget)
 
-                const updatedUser = {
+                let updatedUser = {
                   name: formData.get("name"),
-                  cpf: formData.get("cpf"),
                   phone: formData.get("phone"),
                   birthDate: formData.get("birthDate"),
                   email: formData.get("email")
                 }
 
+                const res = await api.call(`users/${localStorage.getItem("userId")}`, true, { body: JSON.stringify(updatedUser), method: "PUT", dataOnly: true})
+
+                console.log(res)
                 console.log(updatedUser)
 
                 setIsEditing(false)

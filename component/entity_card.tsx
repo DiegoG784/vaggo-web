@@ -25,13 +25,13 @@ interface PropertyData {
 }
 
 interface SpotData {
-  size: number
-  status: "DISPONIVEL" | "INDISPONIVEL" | "OCUPADA"
+  size: string
+  status: "DISPONIVEL" | "INDISPONIVEL" | "OCUPADA" | any
   identifier: string
   isCovered: boolean
-  approvalStatus: "PENDENTE" | "APROVADA" | "RECUSADA"
-  allowedVehicles: string
-  operatingHours: string
+  approvalStatus: "PENDENTE" | "APROVADA" | "RECUSADA" | any
+  allowedVehicles: any
+  operatingHours: any
 }
 
 interface EntityCardProps {
