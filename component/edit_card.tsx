@@ -4,7 +4,7 @@ import { useRouter } from "next/navigation"
 
 interface EditCardProps {
   type: "user" | "vehicle" | "property" | "spot"
-  onSubmit: (e: React.FormEvent<HTMLFormElement>) => void
+  onSubmit: (e: React.FormEvent<HTMLFormElement>, data:any) => void
   onCancel?: () => void
   defaultValues?: any
   hasBlur?: boolean
@@ -91,8 +91,8 @@ export default function EditCard({
         className="flex flex-col gap-4"
         onSubmit={(e) => {
         e.preventDefault()     
-        onSubmit(e)          
-        router.refresh()       
+        onSubmit(e, defaultValues)          
+        router.refresh()
         }
     }
       >
@@ -122,16 +122,16 @@ export default function EditCard({
         {type === "vehicle" && (
           <>
             <div className="grid grid-cols-2 gap-3">
-              <input name="brand" defaultValue={defaultValues.brand} placeholder="Marca" className={inputStyle} />
-              <input name="model" defaultValue={defaultValues.model} placeholder="Modelo" className={inputStyle} />
+              <input type="text" name="brand" defaultValue={defaultValues.brand} placeholder="Marca" className={inputStyle} />
+              <input type="text" name="model" defaultValue={defaultValues.model} placeholder="Modelo" className={inputStyle} />
             </div>
 
             <div className="grid grid-cols-2 gap-3">
-              <input name="color" defaultValue={defaultValues.color} placeholder="Cor" className={inputStyle} />
-              <input name="licensePlate" defaultValue={defaultValues.licensePlate} placeholder="Placa" className={inputStyle} />
+              <input type="text" name="color" defaultValue={defaultValues.color} placeholder="Cor" className={inputStyle} />
+              <input type="text" name="licensePlate" defaultValue={defaultValues.licensePlate} placeholder="Placa" className={inputStyle} />
             </div>
 
-            <input type="date" name="manufactureYear" defaultValue={defaultValues.manufactureYear} className={inputStyle} />
+            <input type="text" name="manufactureYear" defaultValue={defaultValues.manufactureYear} className={inputStyle} />
           </>
         )}
 

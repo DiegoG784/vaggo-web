@@ -93,14 +93,16 @@ export default function RegisterCard({
             <div className="grid grid-cols-2 gap-3">
               <input name="brand" placeholder="Marca" className="input-clean" />
               <input name="model" placeholder="Modelo" className="input-clean" />
+              <input name="size" placeholder="Tamanho" className="input-clean" />
             </div>
 
             <div className="grid grid-cols-2 gap-3">
               <input name="color" placeholder="Cor" className="input-clean" />
               <input name="licensePlate" placeholder="Placa" className="input-clean" />
+              <input name="type" placeholder="Tipo" className="input-clean" />
             </div>
 
-            <input type="date" name="manufactureYear" className="input-clean" />
+            <input type="text" name="manufactureYear" className="input-clean" />
           </>
         )}
 

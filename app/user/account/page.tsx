@@ -163,6 +163,7 @@ export default function Page() {
                 type="vehicle"
                 editHref="/user/vehicle/register"
                 data={{
+                  id: vehicle.id,
                   brand: vehicle.brand,
                   model: vehicle.model,
                   color: vehicle.color,

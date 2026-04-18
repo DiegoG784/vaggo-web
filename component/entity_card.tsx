@@ -6,14 +6,18 @@ import Link from "next/link"
 import BlurOverlay from "@/component/blur_overlay"
 import EditCard from "@/component/edit_card"
 
+import * as api from '@/app/api'
+import { VehicleResponse } from "@/interface/api/vehicle"
+
 type CardType = "vehicle" | "property" | "spot"
 
 interface VehicleData {
+  id: number
   brand: string
   model: string
   color: string
   licensePlate: string
-  manufactureYear: string | Date
+  manufactureYear: string
 }
 
 interface PropertyData {
@@ -47,11 +51,16 @@ export default function EntityCard({
 }: EntityCardProps) {
   const [openEdit, setOpenEdit] = useState(false)
 
-  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>, endpoint:string) {
     e.preventDefault()
 
     const formData = new FormData(e.currentTarget)
     const values = Object.fromEntries(formData)
+
+    const res = await api.call(endpoint, true, {body: JSON.stringify(values), method: "PUT", contentType:"json"})
+    // const res = await api.call(endpoint, true, {body: '{"color": "brancao", "model": "De marrom"}', method: "PUT", contentType:"json"})
+
+    console.log(res)
 
     console.log("Dados editados:", values)
 
@@ -75,7 +84,7 @@ export default function EntityCard({
           <div className="flex gap-2 mt-3 flex-wrap">
             <Tag>{vehicle.color}</Tag>
             <Tag>
-              {new Date(vehicle.manufactureYear).getFullYear()}
+              {vehicle.manufactureYear}
             </Tag>
           </div>
         </>
@@ -125,10 +134,11 @@ export default function EntityCard({
 
   function renderPopup() {
     if (type === "vehicle") {
+      console.log(`vehicle data:`, data)
       return (
         <EditCard
           type="vehicle"
-          onSubmit={handleSubmit}
+          onSubmit={(e, data:any) => {handleSubmit(e, `vehicles/${data.id}`)}}
           defaultValues={data}
           hasBlur={true}
         />
