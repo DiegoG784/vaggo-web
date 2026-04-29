@@ -25,7 +25,7 @@ interface PropertyData {
   type: string
   description: string
   totalCapacity: number
-  addressId: number
+  zipCode: string
 }
 
 interface SpotData {
@@ -106,7 +106,7 @@ export default function EntityCard({
 
           <div className="flex gap-2 mt-3 flex-wrap">
             <Tag>{property.totalCapacity} vagas</Tag>
-            <Tag>ID {property.addressId}</Tag>
+            <Tag>ID {property.zipCode}</Tag>
           </div>
         </>
       )
@@ -149,7 +149,7 @@ export default function EntityCard({
       return (
         <EditCard
           type="property"
-          onSubmit={handleSubmit}
+          onSubmit={(e, data:any) => {handleSubmit(e, `properties/${data.id}`)}}
           defaultValues={data}
           hasBlur={true}
         />
@@ -160,7 +160,7 @@ export default function EntityCard({
       return (
         <EditCard
           type="spot"
-          onSubmit={handleSubmit}
+          onSubmit={(e, data:any) => {handleSubmit(e, `spots/properties/${localStorage.getItem('userId')}/spots/${data.id}`)}}
           defaultValues={data}
           hasBlur={true}
         />

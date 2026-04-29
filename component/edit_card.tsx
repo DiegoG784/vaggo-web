@@ -106,8 +106,7 @@ export default function EditCard({
               {/* <input name="cpf" defaultValue={defaultValues.cpf} placeholder="CPF" className={inputStyle} /> */}
 
               <select name="gender" defaultValue={defaultValues.gender} className={inputStyle}>
-                <option value="">Sexo</option>
-                <option value="M">Masculino</option>
+                <option value="M" selected>Masculino</option>
                 <option value="F">Feminino</option>
               </select>
             </div>
@@ -150,7 +149,7 @@ export default function EditCard({
 
             <div className="grid grid-cols-2 gap-3">
               <input type="number" name="totalCapacity" defaultValue={defaultValues.totalCapacity} placeholder="Capacidade" className={inputStyle} />
-              <input name="addressId" defaultValue={defaultValues.addressId} placeholder="ID Endereço" className={inputStyle} />
+              <input type="text" name="zipCode" defaultValue={defaultValues.zipCode} placeholder="CEP" className={inputStyle} />
             </div>
           </>
         )}
@@ -159,30 +158,13 @@ export default function EditCard({
         {type === "spot" && (
           <>
             <div className="grid grid-cols-2 gap-3">
-              <input name="identifier" defaultValue={defaultValues.identifier} placeholder="Identificador" className={inputStyle} />
+              <input type="text" name="identifier" defaultValue={defaultValues.identifier} placeholder="Identificador" className={inputStyle} />
               <input type="number" name="size" defaultValue={defaultValues.size} placeholder="Tamanho" className={inputStyle} />
             </div>
 
             <div className="grid grid-cols-2 gap-3">
-              <select name="status" defaultValue={defaultValues.status} className={inputStyle}>
-                <option value="">Status</option>
-                <option value="DISPONIVEL">Disponível</option>
-                <option value="INDISPONIVEL">Indisponível</option>
-                <option value="OCUPADA">Ocupada</option>
-              </select>
-
-              <select name="approvalStatus" defaultValue={defaultValues.approvalStatus} className={inputStyle}>
-                <option value="">Aprovação</option>
-                <option value="PENDENTE">Pendente</option>
-                <option value="APROVADA">Aprovada</option>
-                <option value="RECUSADA">Recusada</option>
-              </select>
-            </div>
-
-            <div className="grid grid-cols-2 gap-3">
               <select name="isCovered" defaultValue={String(defaultValues.isCovered)} className={inputStyle}>
-                <option value="">Cobertura</option>
-                <option value="true">Coberta</option>
+                <option value="true" selected>Coberta</option>
                 <option value="false">Descoberta</option>
               </select>
 

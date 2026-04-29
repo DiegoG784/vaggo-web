@@ -70,8 +70,7 @@ export default function RegisterCard({
               <input name="cpf" placeholder="CPF" className="input-clean" />
 
               <select name="gender" className="input-clean">
-                <option value="">Sexo</option>
-                <option value="M">Masculino</option>
+                <option value="M" selected>Masculino</option>
                 <option value="F">Feminino</option>
               </select>
             </div>

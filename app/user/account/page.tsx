@@ -201,11 +201,12 @@ export default function Page() {
                   type="property"
                   editHref="/property/register"
                   data={{
+                    id: property.id,
                     name: property.name,
                     type: property.type,
                     description: property.description,
                     totalCapacity: property.totalCapacity,
-                    addressId: property.addressId
+                    zipCode: property.zipCode
                   }}
                 />
               )
@@ -238,6 +239,7 @@ export default function Page() {
                   type="spot"
                   editHref="/spot/register"
                   data={{
+                    id: spot.id,
                     size: spot.size,
                     status: spot.status,
                     identifier: spot.identifier,
@@ -367,7 +369,7 @@ export default function Page() {
                   email: formData.get("email")
                 }
 
-                const res = await api.call(`users/${localStorage.getItem("userId")}`, true, { body: JSON.stringify(updatedUser), method: "PUT", dataOnly: true})
+                const res = await api.call(`users/${localStorage.getItem("userId")}`, true, { body: JSON.stringify(updatedUser), method: "PUT", contentType: "json"})
 
                 console.log(res)
                 console.log(updatedUser)

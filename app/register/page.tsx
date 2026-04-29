@@ -53,7 +53,12 @@ export default function Page() {
       () => {
         let loginData = {
           email: values.email,
-          password: values.password
+          password: values.password,
+          // name: values.name,
+          // cpf: values.cpf,
+          // gender: values.gender,
+          // phone: values.phone,
+          // birthDate: values.birthDate
         }
         console.log(`para login: ${JSON.stringify(loginData)}`)
         
@@ -68,7 +73,7 @@ export default function Page() {
           }
         )
           .then((res) => res.json())
-          .then((data) => localStorage.setItem('token', data.data.token))
+          .then((data) => {localStorage.setItem('token', data.data.token); localStorage.setItem('userId', data.data.user.id)})
       }
     )
 

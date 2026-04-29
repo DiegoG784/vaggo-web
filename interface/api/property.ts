@@ -9,5 +9,6 @@ export interface PropertyResponse extends DataResponse {
     isActive: boolean
     totalCapacity: number
     addressId: number
+    zipCode: string
     address: Address
 }
