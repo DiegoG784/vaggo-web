@@ -2,7 +2,8 @@ import { ApiResponse, DataResponse } from "@/interface/api/api"
 
 const API_ADDRESS = "http://localhost:3000/"
 
-type contentTypeSupport = "json"
+export type contentTypeSupport = "json"
+export type requestTypeSupport = "GET" | "POST" | "UPDATE" | "DELETE" | "PATCH"
 
 const contentTypeTable : Record<contentTypeSupport, string> = {
     'json': 'application/json'
